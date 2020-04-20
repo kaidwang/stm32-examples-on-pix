@@ -1,0 +1,105 @@
+#include "stm32f4xx_hal.h"
+
+#pragma once
+///////////////////////////////////////////////////////////////////////////////
+/*
+ * 	PA5	SCLK	SPI的时钟
+	PA6	SDO		SPI的MISO
+	PA7	SDI		SPI的MOSI
+	PC2	CS		片选信号输入
+	PB1	INT		数字中断信号输出
+ *
+ *
+ *
+ * */
+#define MPU6000_CONFIG		    	0x1A
+
+#define BITS_DLPF_CFG_256HZ         0x00
+#define BITS_DLPF_CFG_188HZ         0x01
+#define BITS_DLPF_CFG_98HZ          0x02
+#define BITS_DLPF_CFG_42HZ          0x03
+
+#define MPU6000_SPI           huart3
+
+#define MPU6000_CS_GPIO       GPIOC
+//#define MPU6000_CS_GPIO_CLOCK RCC_AHB1Periph_GPIOB
+#define MPU6000_CS_PIN        GPIO_PIN_2
+
+#define ENABLE_MPU6000  HAL_GPIO_WritePin(MPU6000_CS_GPIO, MPU6000_CS_PIN, GPIO_PIN_RESET);
+#define DISABLE_MPU6000 HAL_GPIO_WritePin(MPU6000_CS_GPIO, MPU6000_CS_PIN, GPIO_PIN_SET)
+
+
+#define GYRO_SCALE_FACTOR  0.00053292f  // (4/131) * pi/180   (32.75 LSB = 1 DPS)
+#define ACCEL_SCALE_FACTOR 0.00119708f  // (1/8192) * 9.8065  (8192 LSB = 1 G)
+
+
+///////////////////////////////////////////////////////////////////////////////
+// MPU6000 Variables
+///////////////////////////////////////////////////////////////////////////////
+
+extern float   accelOneG;
+
+extern float   accelTCBias[3];
+
+extern int32_t accelSum100Hz[3];
+
+extern int32_t accelSum500Hz[3];
+
+extern int32_t accelSummedSamples100Hz[3];
+
+extern int32_t accelSummedSamples500Hz[3];
+
+extern int16_t rawAccel[3];
+
+extern float nonRotatedAccelData[3];
+
+///////////////////////////////////////
+
+extern float gyroRTBias[3];
+
+extern float gyroTCBias[3];
+
+extern int32_t gyroSum500Hz[3];
+
+extern int32_t gyroSummedSamples500Hz[3];
+
+extern int16_t rawGyro[3];
+
+extern float nonRotatedGyroData[3];
+
+///////////////////////////////////////
+
+extern uint8_t accelCalibrating;
+
+extern uint8_t mpu6000Calibrating;
+
+extern float   mpu6000Temperature;
+
+extern int16_t rawMPU6000Temperature;
+
+///////////////////////////////////////////////////////////////////////////////
+// MPU6000 Initialization
+///////////////////////////////////////////////////////////////////////////////
+
+void initMPU6000(void);
+
+///////////////////////////////////////////////////////////////////////////////
+// Read MPU6000
+///////////////////////////////////////////////////////////////////////////////
+
+void readMPU6000(void);
+
+///////////////////////////////////////////////////////////////////////////////
+// Compute MPU6000 Runtime Data
+///////////////////////////////////////////////////////////////////////////////
+
+void computeMPU6000RTData(void);
+
+///////////////////////////////////////////////////////////////////////////////
+// Compute MPU6000 Temperature Compensation Bias
+///////////////////////////////////////////////////////////////////////////////
+
+void computeMPU6000TCBias(void);
+
+///////////////////////////////////////////////////////////////////////////////
+

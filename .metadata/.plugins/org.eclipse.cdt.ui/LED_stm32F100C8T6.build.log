@@ -1,0 +1,10 @@
+17:21:32 **** Build of configuration Debug for project LED_stm32F100C8T6 ****
+make -j12 all 
+arm-none-eabi-size   LED_stm32F100C8T6.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4636	     20	   1572	   6228	   1854	LED_stm32F100C8T6.elf
+Finished building: default.size.stdout
+ 
+
+17:21:34 Build Finished. 0 errors, 0 warnings. (took 1s.530ms)
+

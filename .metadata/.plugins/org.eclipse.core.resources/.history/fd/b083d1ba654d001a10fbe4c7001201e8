@@ -1,0 +1,9 @@
+/*
+ * mpu6000.c
+ *
+ *  Created on: Feb 12, 2020
+ *      Author: BIT_UAV
+ */
+  ENABLE_MPU6000;
+
+

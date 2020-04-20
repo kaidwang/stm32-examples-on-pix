@@ -1,0 +1,5 @@
+#include "stm32f4xx_hal.h"
+extern SPI_HandleTypeDef hspi1;
+
+void MX_SPI1_Init(void);//初始化函数
+void Error_Handler(void);//声明错误处理函数

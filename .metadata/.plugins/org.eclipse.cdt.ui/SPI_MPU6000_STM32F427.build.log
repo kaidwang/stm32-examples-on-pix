@@ -1,0 +1,10 @@
+19:02:37 **** Incremental Build of configuration Debug for project SPI_MPU6000_STM32F427 ****
+make -j12 all 
+arm-none-eabi-size   SPI_MPU6000_STM32F427.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17448	    120	   1808	  19376	   4bb0	SPI_MPU6000_STM32F427.elf
+Finished building: default.size.stdout
+ 
+
+19:02:39 Build Finished. 0 errors, 0 warnings. (took 1s.622ms)
+

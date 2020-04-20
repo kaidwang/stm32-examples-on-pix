@@ -1,0 +1,36 @@
+#include "stm32f4xx_hal.h"
+
+#pragma once
+///////////////////////////////////////////////////////////////////////////////
+/*
+ * 	PA5	SCLK	SPI的时钟
+	PA6	SDO		SPI的MISO
+	PA7	SDI		SPI的MOSI
+	PC2	CS		片选信号输入
+	PB1	INT		数字中断信号输出
+ *
+ *
+ *
+ * */
+#define MPU6000_CONFIG		    	0x1A
+
+#define BITS_DLPF_CFG_256HZ         0x00
+#define BITS_DLPF_CFG_188HZ         0x01
+#define BITS_DLPF_CFG_98HZ          0x02
+#define BITS_DLPF_CFG_42HZ          0x03
+
+#define MPU6000_SPI           huart3
+
+#define MPU6000_CS_GPIO       GPIOC
+//#define MPU6000_CS_GPIO_CLOCK RCC_AHB1Periph_GPIOB
+#define MPU6000_CS_PIN        GPIO_PIN_2
+
+#define ENABLE_MPU6000  HAL_GPIO_WritePin(MPU6000_CS_GPIO, MPU6000_CS_PIN, GPIO_PIN_RESET);
+#define DISABLE_MPU6000 HAL_GPIO_WritePin(MPU6000_CS_GPIO, MPU6000_CS_PIN, GPIO_PIN_SET)
+
+
+#define GYRO_SCALE_FACTOR  0.00053292f  // (4/131) * pi/180   (32.75 LSB = 1 DPS)
+#define ACCEL_SCALE_FACTOR 0.00119708f  // (1/8192) * 9.8065  (8192 LSB = 1 G)
+
+
+void initMPU6000(void);

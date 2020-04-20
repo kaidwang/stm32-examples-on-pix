@@ -1,0 +1,10 @@
+17:21:36 **** Build of configuration Debug for project Timer_stm32F100 ****
+make -j12 all 
+arm-none-eabi-size   Timer_stm32F100.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6912	     20	   1636	   8568	   2178	Timer_stm32F100.elf
+Finished building: default.size.stdout
+ 
+
+17:21:38 Build Finished. 0 errors, 0 warnings. (took 1s.583ms)
+

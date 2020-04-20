@@ -1,0 +1,10 @@
+17:21:40 **** Build of configuration Debug for project uart_stm32F427 ****
+make -j12 all 
+arm-none-eabi-size   uart_stm32F427.elf 
+   text	   data	    bss	    dec	    hex	filename
+   8420	     20	   1636	  10076	   275c	uart_stm32F427.elf
+Finished building: default.size.stdout
+ 
+
+17:21:42 Build Finished. 0 errors, 0 warnings. (took 1s.930ms)
+

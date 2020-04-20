@@ -1,0 +1,14 @@
+/*
+ * mpu6000.c
+ *
+ *  Created on: Feb 12, 2020
+ *      Author: BIT_UAV
+ */
+#include "mpu6000.h"
+
+void initMPU6000(void)
+{
+	ENABLE_MPU6000;
+}
+
+

@@ -1,0 +1,10 @@
+11:08:49 **** Incremental Build of configuration Release for project stm32F100C8T6_empty ****
+make -j12 all 
+arm-none-eabi-size   stm32F100C8T6_empty.elf 
+   text	   data	    bss	    dec	    hex	filename
+   2752	     20	   1572	   4344	   10f8	stm32F100C8T6_empty.elf
+Finished building: default.size.stdout
+ 
+
+11:08:51 Build Finished. 0 errors, 0 warnings. (took 1s.420ms)
+

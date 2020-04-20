@@ -1,0 +1,7 @@
+21:11:42 **** Clean-only build of configuration Debug for project stm32F427VIT6_empty ****
+make -j12 clean 
+rm -rf *
+ 
+
+21:11:54 Build Finished. 0 errors, 0 warnings. (took 12s.176ms)
+
