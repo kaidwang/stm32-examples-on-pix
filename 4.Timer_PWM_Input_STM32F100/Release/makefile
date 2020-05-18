@@ -44,7 +44,7 @@ all: Timer_PWM_Input_STM32F100.elf secondary-outputs
 
 # Tool invocations
 Timer_PWM_Input_STM32F100.elf: $(OBJS) $(USER_OBJS) D:\stm32exOnPix\source\ code\template\4.Timer_PWM_Input_STM32F100\STM32F100C8TX_FLASH.ld
-	arm-none-eabi-gcc -o "Timer_PWM_Input_STM32F100.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\stm32exOnPix\source code\template\4.Timer_PWM_Input_STM32F100\STM32F100C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Timer_PWM_Input_STM32F100.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "Timer_PWM_Input_STM32F100.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\stm32exOnPix\source code\template\4.Timer_PWM_Input_STM32F100\STM32F100C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Timer_PWM_Input_STM32F100.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

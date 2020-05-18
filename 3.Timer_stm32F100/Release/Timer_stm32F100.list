@@ -1403,7 +1403,7 @@ Disassembly of section .text:
  8000ee2:	4c09      	ldr	r4, [pc, #36]	; (8000f08 <HAL_TIM_PeriodElapsedCallback+0x30>)
  8000ee4:	7822      	ldrb	r2, [r4, #0]
  8000ee6:	b952      	cbnz	r2, 8000efe <HAL_TIM_PeriodElapsedCallback+0x26>
- 8000ee8:	f44f 5100 	mov.w	r1, #8192	; 0x2000
+ 8000ee8:	f44f 4100 	mov.w	r1, #32768	; 0x8000
  8000eec:	4807      	ldr	r0, [pc, #28]	; (8000f0c <HAL_TIM_PeriodElapsedCallback+0x34>)
  8000eee:	f7ff fb39 	bl	8000564 <HAL_GPIO_WritePin>
  8000ef2:	7823      	ldrb	r3, [r4, #0]
@@ -1458,7 +1458,7 @@ Disassembly of section .text:
  8000f70:	f041 0120 	orr.w	r1, r1, #32
  8000f74:	6199      	str	r1, [r3, #24]
  8000f76:	6998      	ldr	r0, [r3, #24]
- 8000f78:	f44f 5100 	mov.w	r1, #8192	; 0x2000
+ 8000f78:	f44f 4100 	mov.w	r1, #32768	; 0x8000
  8000f7c:	f000 0020 	and.w	r0, r0, #32
  8000f80:	9000      	str	r0, [sp, #0]
  8000f82:	9800      	ldr	r0, [sp, #0]
@@ -1472,7 +1472,7 @@ Disassembly of section .text:
  8000f96:	9301      	str	r3, [sp, #4]
  8000f98:	9b01      	ldr	r3, [sp, #4]
  8000f9a:	f7ff fae3 	bl	8000564 <HAL_GPIO_WritePin>
- 8000f9e:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+ 8000f9e:	f44f 4000 	mov.w	r0, #32768	; 0x8000
  8000fa2:	2201      	movs	r2, #1
  8000fa4:	2302      	movs	r3, #2
  8000fa6:	a904      	add	r1, sp, #16

@@ -18,6 +18,13 @@
   */
 /* USER CODE END Header */
 
+
+//STM32F100	Coprocessor
+//LED	flashing
+//interval:1s
+
+
+
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
@@ -91,9 +98,8 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM2_Init();
-  HAL_TIM_Base_Start_IT(&htim2);//初始化定时器2的中断
   /* USER CODE BEGIN 2 */
-
+  HAL_TIM_Base_Start_IT(&htim2);//初始化定时器2的中断
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -107,19 +113,6 @@ int main(void)
   /* USER CODE END 3 */
 }
 
-
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-    static unsigned char ledState = 0;
-    if (htim == (&htim2))
-    {
-        if (ledState == 0)
-            HAL_GPIO_WritePin(GPIOB,GPIO_PIN_13,GPIO_PIN_RESET);
-        else
-            HAL_GPIO_WritePin(GPIOB,GPIO_PIN_13,GPIO_PIN_SET);
-        ledState = !ledState;
-    }
-}
 /**
   * @brief System Clock Configuration
   * @retval None
@@ -212,10 +205,10 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : PB13 */
-  GPIO_InitStruct.Pin = GPIO_PIN_13;
+  GPIO_InitStruct.Pin = GPIO_PIN_15;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -224,7 +217,18 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    static unsigned char ledState = 0;
+    if (htim == (&htim2))
+    {
+        if (ledState == 0)
+            HAL_GPIO_WritePin(GPIOB,GPIO_PIN_15,GPIO_PIN_RESET);
+        else
+            HAL_GPIO_WritePin(GPIOB,GPIO_PIN_15,GPIO_PIN_SET);
+        ledState = !ledState;
+    }
+}
 /* USER CODE END 4 */
 
 /**

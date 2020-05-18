@@ -151,7 +151,7 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   /*使能时钟总线*/
-  __HAL_RCC_GPIOD_CLK_ENABLE();
+  //__HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */

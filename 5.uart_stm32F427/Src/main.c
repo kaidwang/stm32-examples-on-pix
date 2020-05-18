@@ -92,7 +92,7 @@ int main(void)
   MX_GPIO_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
-  uint8_t pData[]="hello world";//通过字符串数组定义�?�hello world”字符串
+  uint8_t pData[]="hello world";//define "hello world”
 
   /* USER CODE END 2 */
 

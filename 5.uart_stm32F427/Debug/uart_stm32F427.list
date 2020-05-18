@@ -4012,7 +4012,7 @@ int main(void)
   MX_USART3_UART_Init();
  8001cd2:	f000 f86f 	bl	8001db4 <MX_USART3_UART_Init>
   /* USER CODE BEGIN 2 */
-  uint8_t pData[]="hello world";//通过字符串数组定义�?�hello world”字符串
+  uint8_t pData[]="hello world";//通过字符串数组定义"hello world”字符串
  8001cd6:	4a06      	ldr	r2, [pc, #24]	; (8001cf0 <main+0x30>)
  8001cd8:	1d3b      	adds	r3, r7, #4
  8001cda:	ca07      	ldmia	r2, {r0, r1, r2}
