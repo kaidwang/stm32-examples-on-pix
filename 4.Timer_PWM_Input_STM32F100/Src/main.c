@@ -127,7 +127,7 @@ int main(void)
 	  }
 	  else
 	  {
-		  duty = tmp2 * 100.0f / tmp1 + 0.5f;
+		  duty = tmp2 * 100.0f / tmp1 + 0.1f;
 		  //freq = 90000000.0f / tmp1;
 	  }
 	  uint8_t pData[10]="";
