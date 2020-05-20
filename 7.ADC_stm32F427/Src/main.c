@@ -23,6 +23,13 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#ifdef __GNUC__
+/* With GCC, small printf (option LD Linker->Libraries->Small printf
+   set to 'Yes') calls __io_putchar() */
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif /* __GNUC__ */
 
 /* USER CODE END Includes */
 
@@ -56,11 +63,16 @@ static void MX_GPIO_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_USART3_UART_Init(void);
 /* USER CODE BEGIN PFP */
-uint16_t ADC_Value;//声明�?个全�?变量，用来存储ADC转化后的�?
+uint16_t ADC_Value;
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+PUTCHAR_PROTOTYPE
+{
+    HAL_UART_Transmit(&huart3 , (uint8_t *)&ch, 1, 0xFFFF);
+    return ch;
+}
 
 /* USER CODE END 0 */
 
@@ -108,15 +120,18 @@ int main(void)
     /* USER CODE BEGIN 3 */
 	  HAL_ADC_Start(&hadc1);     //启动ADC转换
 	  HAL_ADC_PollForConversion(&hadc1, 50);   //等待转换完成，50为最大等待时间，单位为ms
-
+	  float vol=0;
 	  if(HAL_IS_BIT_SET(HAL_ADC_GetState(&hadc1), HAL_ADC_STATE_REG_EOC))
 	  {
 		ADC_Value = HAL_ADC_GetValue(&hadc1);   //获取AD值
-		float vol =ADC_Value*3.3/4096;//计算得到电压值，变量类型为float
+		printf("ADC2 Reading : %d \r\n",ADC_Value);
+		vol =((float)ADC_Value*3.3)/4096;//计算得到电压值，变量类型为float
+		printf("vol : %f \r\n",vol);
+
 		//vol=3.3;
-		uint8_t pData[4]="";
-		sprintf(pData,"%.1f",vol);//将浮点数，转化为字符串，以供串口输出
-		HAL_UART_Transmit(&huart3,(uint8_t*)pData,sizeof(pData),100);//不断通过串口3发送，pData中的数据，sizeof计算pData中的字节数
+		//uint8_t pData[4]="";
+		//sprintf(pData,"%.1f",vol);//将浮点数，转化为字符串，以供串口输出
+		//HAL_UART_Transmit(&huart3,(uint8_t*)pData,sizeof(pData),100);//不断通过串口3发送，pData中的数据，sizeof计算pData中的字节数
 	  }
 	  HAL_Delay(1000);//延时1s的时间，即为每1s进行一次ADC转换
   }
