@@ -214,12 +214,14 @@ void MPU6000_ReadGyro(Vector3f_t* gyro)
 void MPU6000_ReadTemp(float* temp)
 {
 	uint8_t buffer[2];
+	printf("into the read function.");
+
 	static int16_t temperature_temp;
 
 	Spi_GyroMultiRead(MPU_RA_TEMP_OUT_H, buffer, 2);
 	temperature_temp = ((((int16_t)buffer[0]) << 8) | buffer[1]);
 	*temp = 36.53f + (float)temperature_temp / 340;
-
+	printf("into the read function.");
     SoftDelayUs(1);
 }
 

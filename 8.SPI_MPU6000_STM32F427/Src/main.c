@@ -24,13 +24,20 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+//#include "stdio.h"
 #include "spi.h"
 #include "MPU6000.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+#ifdef __GNUC__
+/* With GCC, small printf (option LD Linker->Libraries->Small printf
+   set to 'Yes') calls __io_putchar() */
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif /* __GNUC__ */
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -61,7 +68,11 @@ static void MX_USART3_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+PUTCHAR_PROTOTYPE
+{
+    HAL_UART_Transmit(&huart3 , (uint8_t *)&ch, 1, 0xFFFF);
+    return ch;
+}
 /* USER CODE END 0 */
 
 /**
@@ -109,12 +120,15 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  float temp;
-	  HAL_Delay(1000);
+	  float temp=1.5;
+	  //HAL_Delay(1000);
 	  MPU6000_ReadTemp(&temp);
 	  uint8_t pData[4]="";
 	  sprintf(pData,"%.1f",temp);
 	  HAL_UART_Transmit(&huart3,(uint8_t*)pData,sizeof(pData),100);//不断通过串口3发送，pData中的数据，sizeof计算pData中的字节数
+	  //printf("Enter while(1) section :%f",temp);
+	  HAL_Delay(1000);
+
   }
   /* USER CODE END 3 */
 }

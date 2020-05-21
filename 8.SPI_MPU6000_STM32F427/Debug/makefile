@@ -44,7 +44,7 @@ all: SPI_MPU6000_STM32F427.elf secondary-outputs
 
 # Tool invocations
 SPI_MPU6000_STM32F427.elf: $(OBJS) $(USER_OBJS) D:\stm32exOnPix\source\ code\template\8.SPI_MPU6000_STM32F427\STM32F427VITX_FLASH.ld
-	arm-none-eabi-gcc -o "SPI_MPU6000_STM32F427.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\stm32exOnPix\source code\template\8.SPI_MPU6000_STM32F427\STM32F427VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SPI_MPU6000_STM32F427.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "SPI_MPU6000_STM32F427.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\stm32exOnPix\source code\template\8.SPI_MPU6000_STM32F427\STM32F427VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SPI_MPU6000_STM32F427.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
