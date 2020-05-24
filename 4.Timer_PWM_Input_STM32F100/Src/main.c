@@ -67,6 +67,20 @@ static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN 0 */
 volatile static uint32_t tmp1 = 0, tmp2 = 0;//volatile 该变量随时可能发生变
 
+#ifdef __GNUC__
+/* With GCC, small printf (option LD Linker->Libraries->Small printf
+   set to 'Yes') calls __io_putchar() */
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif /* __GNUC__ */
+
+PUTCHAR_PROTOTYPE
+{
+    HAL_UART_Transmit(&huart1 , (uint8_t *)&ch, 1, 0xFFFF);
+    return ch;
+}
+
 /* USER CODE END 0 */
 
 /**
@@ -120,21 +134,24 @@ int main(void)
 	  uint8_t pDuty[]="Duty is:";
 	  uint8_t pFreq[]="Freq is:";
 	  uint8_t pReturn[]={'\n'};
-	  if (tmp1 == 0)
+	  if (tmp2 == 0)
 	  {
 		  duty = 0;
 		  //freq = 0;
 	  }
 	  else
 	  {
-		  duty = tmp2 * 100.0f / tmp1 + 0.1f;
+		  duty = (tmp1*100)/tmp2 + 0.1f;
 		  //freq = 90000000.0f / tmp1;
 	  }
-	  uint8_t pData[10]="";
-	  sprintf(pData,"%.1f",duty);
+	  printf("tmp1: %d \r\n",tmp1);
+	  printf("tmp2: %d \r\n",tmp2);
+	  printf("duty: %f \r\n",duty);
+	 // uint8_t pData[10]="";
+	 // sprintf(pData,"%.1f",duty);
 	 //pData[sizeof(pData)+1]='K';
 	 // HAL_UART_Transmit(&huart1,(uint8_t*)pDuty,sizeof(pDuty),10);//
-	  HAL_UART_Transmit(&huart1,(uint8_t*)pData,sizeof(pData),10);//
+	 // HAL_UART_Transmit(&huart1,(uint8_t*)pData,sizeof(pData),10);//
 	  //HAL_UART_Transmit(&huart1,(uint8_t*)&"kd",2,10);//
 
 	  //sprintf(pData,"%.1f",freq);
@@ -412,12 +429,12 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 	double freq=0;
     if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1)
     {
-        tmp1 = HAL_TIM_ReadCapturedValue(&htim2, TIM_CHANNEL_2);//周期
+        tmp1 = HAL_TIM_ReadCapturedValue(&htim2, TIM_CHANNEL_1);
         //HAL_UART_Transmit(&huart1,(uint8_t*)&"kd",2,10);//
     }
     else if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_2)
     {
-        tmp2 = HAL_TIM_ReadCapturedValue(&htim2, TIM_CHANNEL_1);//占空
+        tmp2 = HAL_TIM_ReadCapturedValue(&htim2, TIM_CHANNEL_2);//占空
        // HAL_UART_Transmit(&huart1,(uint8_t*)&"gl",2,10);//
     }
    //double tmp=1000;
