@@ -422,7 +422,7 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
-//回调函数
+//timer callback function
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 {
 	double duty=0;
@@ -437,13 +437,6 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
         tmp2 = HAL_TIM_ReadCapturedValue(&htim2, TIM_CHANNEL_2);//占空
        // HAL_UART_Transmit(&huart1,(uint8_t*)&"gl",2,10);//
     }
-   //double tmp=1000;
-   // duty = tmp2 * 100.0f / tmp1 + 0.5f;
-   // freq = 90000000.0f / tmp1;
-   // uint8_t pData[4]="";
-   // sprintf(pData,"%.1f",tmp);
-   // HAL_UART_Transmit(&huart1,(uint8_t*)pData,sizeof(pData),10);
-
 }
 /* USER CODE END 4 */
 

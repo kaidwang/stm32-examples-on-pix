@@ -3022,14 +3022,14 @@ Disassembly of section .text:
  8001f18:	b508      	push	{r3, lr}
  8001f1a:	4c0b      	ldr	r4, [pc, #44]	; (8001f48 <LEDTimer+0x30>)
  8001f1c:	2200      	movs	r2, #0
- 8001f1e:	f44f 5100 	mov.w	r1, #8192	; 0x2000
+ 8001f1e:	f44f 4180 	mov.w	r1, #16384	; 0x4000
  8001f22:	4620      	mov	r0, r4
  8001f24:	f7fe faf4 	bl	8000510 <HAL_GPIO_WritePin>
  8001f28:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
  8001f2c:	f7fe f98e 	bl	800024c <HAL_Delay>
  8001f30:	4620      	mov	r0, r4
- 8001f32:	2200      	movs	r2, #0
- 8001f34:	f44f 5100 	mov.w	r1, #8192	; 0x2000
+ 8001f32:	2201      	movs	r2, #1
+ 8001f34:	f44f 4180 	mov.w	r1, #16384	; 0x4000
  8001f38:	f7fe faea 	bl	8000510 <HAL_GPIO_WritePin>
  8001f3c:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
  8001f40:	f7fe f984 	bl	800024c <HAL_Delay>
@@ -3097,11 +3097,11 @@ Disassembly of section .text:
  8001fde:	4b43      	ldr	r3, [pc, #268]	; (80020ec <main+0x124>)
  8001fe0:	4622      	mov	r2, r4
  8001fe2:	6999      	ldr	r1, [r3, #24]
- 8001fe4:	f44f 5700 	mov.w	r7, #8192	; 0x2000
+ 8001fe4:	f44f 4780 	mov.w	r7, #16384	; 0x4000
  8001fe8:	f041 0120 	orr.w	r1, r1, #32
  8001fec:	6199      	str	r1, [r3, #24]
  8001fee:	6998      	ldr	r0, [r3, #24]
- 8001ff0:	f44f 5100 	mov.w	r1, #8192	; 0x2000
+ 8001ff0:	f44f 4180 	mov.w	r1, #16384	; 0x4000
  8001ff4:	f000 0020 	and.w	r0, r0, #32
  8001ff8:	9000      	str	r0, [sp, #0]
  8001ffa:	9800      	ldr	r0, [sp, #0]
